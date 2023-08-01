@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
-function Header() {
+function Header(props) {
+	console.log('props', props);
 	return <header>
 			<h1><a href="/">WEB</a></h1>
 		</header>
@@ -28,7 +29,7 @@ function App() {
   return (
     <div>
       {/* home으로 이동하는 header 영역 */}
-      <Header></Header>
+      <Header title="REACT"></Header>
 
 			{/* 구체적인 글을 보는 페이지로 이동하는 영역 */}
       <Nav></Nav>
