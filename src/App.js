@@ -2,40 +2,53 @@ import logo from './logo.svg';
 import './App.css';
 
 function Header(props) {
-	console.log('props', props);
+	console.log('props', props, props.title);
 	return <header>
-			<h1><a href="/">WEB</a></h1>
+			<h1><a href="/">{props.title}</a></h1>
 		</header>
 }
 
-function Nav() {
+function Nav(props) {
+	const lis = [
+	]
+
+	for(let i=0; i<props.topics.length; i++) {
+		let t = props.topics[i];
+		lis.push(<li key={t.id}><a href={'/read/'+t.id}>{t.title}</a></li>)
+	}
+
 	return <nav>
 		<ol>
-			<li><a href="/read/1">Html</a></li>
-			<li><a href="/read/2">Css</a></li>
-			<li><a href="/read/3">Java Script</a></li>
+			{lis}
 		</ol>
 	</nav>
 }
 
-function Article() {
+function Article(props) {
 	return <article>
-		<h2>Welcome</h2>
-		Hello, WEB
+		<h2>{props.title}</h2>
+		{props.body}
 	</article>
 }
 
 function App() {
-  return (
+
+	const topics = [
+		{id:1, title:'Html', body:'html is ...'},
+		{id:2, title:'Css', body:'css is ...'},
+		{id:3, title:'JavaScript', body:'javascript is ...'}
+	]
+
+  	return (
     <div>
-      {/* home으로 이동하는 header 영역 */}
-      <Header title="REACT"></Header>
+    	{/* home으로 이동하는 header 영역 */}
+    	<Header title="WEB"></Header>
 
-			{/* 구체적인 글을 보는 페이지로 이동하는 영역 */}
-      <Nav></Nav>
+		{/* 구체적인 글을 보는 페이지로 이동하는 영역 */}
+    	<Nav topics={topics}></Nav>
 
-			{/* 본문 영역 */}
-			<Article></Article>
+		{/* 본문 영역 */}
+		<Article title="Welcome" body="Hello, WEB"></Article>
     </div>
   );
 }
